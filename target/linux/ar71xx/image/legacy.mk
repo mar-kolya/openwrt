@@ -260,6 +260,7 @@ ap147_mtdlayout=mtdparts=spi0.0:256k(u-boot)ro,64k(u-boot-env)ro,14528k(rootfs),
 ap152_mtdlayout_16M=mtdparts=spi0.0:256k(u-boot)ro,64k(u-boot-env)ro,14528k(rootfs),1472k(kernel),64k(art)ro,16000k@0x50000(firmware)
 bxu2000n2_mtdlayout=mtdparts=spi0.0:256k(u-boot)ro,64k(u-boot-env)ro,1408k(kernel),8448k(rootfs),6016k(user),64k(cfg),64k(oem),64k(art)ro
 cameo_ap81_mtdlayout=mtdparts=spi0.0:128k(u-boot)ro,64k(config)ro,3840k(firmware),64k(art)ro
+cameo_ap818m_mtdlayout=mtdparts=spi0.0:128k(u-boot)ro,64k(config)ro,7936k(firmware),64k(art)ro
 cameo_ap91_mtdlayout=mtdparts=spi0.0:192k(u-boot)ro,64k(nvram)ro,3712k(firmware),64k(mac)ro,64k(art)ro
 cameo_ap99_mtdlayout=mtdparts=spi0.0:192k(u-boot)ro,64k(nvram)ro,3520k(firmware),64k(mac)ro,192k(lp)ro,64k(art)ro
 cameo_ap121_mtdlayout=mtdparts=spi0.0:64k(u-boot)ro,64k(art)ro,64k(mac)ro,64k(nvram)ro,192k(language)ro,3648k(firmware)
@@ -444,6 +445,10 @@ endef
 Image/Build/CameoAP81/buildkernel=$(call MkuImageLzma,$(2),$(3) $(cameo_ap81_mtdlayout))
 Image/Build/CameoAP81=$(call Image/Build/Cameo,$(1),$(2),$(3),$(cameo_ap81_mtdlayout),$(4),65536)
 Image/Build/CameoAP81/initramfs=$(call MkuImageLzma/initramfs,$(2),$(3) $(cameo_ap81_mtdlayout))
+
+Image/Build/CameoAP818M/buildkernel=$(call MkuImageLzma,$(2),$(3) $(cameo_ap818m_mtdlayout))
+Image/Build/CameoAP818M=$(call Image/Build/Cameo,$(1),$(2),$(3),$(cameo_ap818m_mtdlayout),$(4),65536)
+Image/Build/CameoAP818M/initramfs=$(call MkuImageLzma/initramfs,$(2),$(3) $(cameo_ap818m_mtdlayout))
 
 Image/Build/CameoAP91/buildkernel=$(call MkuImageLzma,$(2),$(3) $(cameo_ap91_mtdlayout))
 Image/Build/CameoAP91=$(call Image/Build/Cameo,$(1),$(2),$(3),$(cameo_ap91_mtdlayout),$(4),65536)
@@ -1029,6 +1034,7 @@ $(eval $(call SingleProfile,CameoAP123_4M,64kraw,DIR615I3,dir-615-i3,DIR-615-I1,
 $(eval $(call SingleProfile,CameoAP81,64kraw-nojffs,A02RBW300N,a02-rb-w300n,TEW-632BRP,ttyS0,115200,"AP81-AR9130-RT-070614-03"))
 $(eval $(call SingleProfile,CameoAP81,64kraw-nojffs,DIR615C1,dir-615-c1,DIR-615-C1,ttyS0,115200,"AP81-AR9130-RT-070614-02"))
 $(eval $(call SingleProfile,CameoAP81,64kraw-nojffs,TEW632BRP,tew-632brp,TEW-632BRP,ttyS0,115200,"AP81-AR9130-RT-070614-00"))
+$(eval $(call SingleProfile,CameoAP818M,64kraw-nojffs,TEW632BRP8M,tew-632brp-8m,TEW-632BRP,ttyS0,115200,"AP81-AR9130-RT-070614-00"))
 $(eval $(call SingleProfile,CameoAP81,64kraw-nojffs,TEW652BRP_FW,tew-652brp,TEW-632BRP,ttyS0,115200,"AP81-AR9130-RT-080609-05"))
 $(eval $(call SingleProfile,CameoAP81,64kraw-nojffs,TEW652BRP_RECOVERY,tew-652brp-recovery,TEW-632BRP,ttyS0,115200,"AP81-AR9130-RT-070614-02"))
 

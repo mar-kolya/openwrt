@@ -16,6 +16,17 @@ endef
 
 $(eval $(call Profile,TEW632BRP))
 
+define Profile/TEW632BRP8M
+	NAME:=TRENDNet TEW632BRP-8M
+	PACKAGES:=
+endef
+
+define Profile/TEW632BRP8M/Description
+	Package set optimized for the TRENDNet TEW-632BRP with 8M flash.
+endef
+
+$(eval $(call Profile,TEW632BRP8M))
+
 define Profile/TEW652BRP
 	NAME:=TRENDNet TEW-652BRP
 	PACKAGES:=

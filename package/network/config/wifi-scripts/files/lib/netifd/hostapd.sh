@@ -320,6 +320,8 @@ hostapd_common_add_bss_config() {
 
 	config_add_boolean ieee80211k rrm_neighbor_report rrm_beacon_report
 
+	config_add_int local_pwr_constraint
+
 	config_add_boolean ftm_responder stationary_ap
 	config_add_string lci civic
 
@@ -888,6 +890,12 @@ hostapd_set_bss_options() {
 	[ "$rrm_neighbor_report" -eq "1" ] && append bss_conf "rrm_neighbor_report=1" "$N"
 	[ "$rrm_beacon_report" -eq "1" ] && append bss_conf "rrm_beacon_report=1" "$N"
 	[ "$rnr" -eq "1" ] && append bss_conf "rnr=1" "$N"
+
+	json_get_vars local_pwr_constraint
+	set_default local_pwr_constraint 0
+
+	# Note: this can only be set if $country_ie is set, but this is set on interface level and seems hard to get to here
+	[ "$local_pwr_constraint" -gt 0 ] && append bss_conf "local_pwr_constraint=$local_pwr_constraint" "$N"
 
 	json_get_vars ftm_responder stationary_ap lci civic
 	set_default ftm_responder 0

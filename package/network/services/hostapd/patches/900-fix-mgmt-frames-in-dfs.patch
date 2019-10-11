@@ -1,0 +1,18 @@
+--- a/src/drivers/driver_nl80211.c
++++ b/src/drivers/driver_nl80211.c
+@@ -4395,10 +4395,11 @@ send_frame_cmd:
+ #endif /* CONFIG_TESTING_OPTIONS */
+ 
+ 	wpa_printf(MSG_DEBUG, "nl80211: send_mlme -> send_frame_cmd");
+-	res = nl80211_send_frame_cmd(bss, freq, wait_time, data, data_len,
+-				     use_cookie, no_cck, noack, offchanok,
+-				     csa_offs, csa_offs_len, link_id);
+-	if (!res)
++        res = nl80211_send_frame_cmd(
++            bss, freq, wait_time, data, data_len, use_cookie, no_cck, noack,
++            (int)freq == bss->flink->freq ? 0 : offchanok, csa_offs,
++            csa_offs_len, link_id);
++        if (!res)
+ 		drv->send_frame_link_id = link_id;
+ 
+ 	return res;
